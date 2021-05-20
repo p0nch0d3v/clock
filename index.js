@@ -14,9 +14,9 @@
             }
             interval *= -1;
         }, 1000);
-    }
+    };
 
-    function toggleFullScreen() {
+    toggleFullScreen = function toggleFullScreen() {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
       } else {
@@ -24,6 +24,15 @@
           document.exitFullscreen();
        }
      }
+    };
+
+    getBatteeryInfo = function(){
+      navigator.getBattery().then(function(battery) {
+        battery.addEventListener('levelchange', function() {    
+          $('#battery .progress-bar').css('width', `${(battery.level * 100)}%`);
+        })
+        $('#battery .progress-bar').css('width', `${(battery.level * 100)}%`);
+      });
     }
 
     $(document).on('touchend click', function(){
@@ -34,5 +43,6 @@
 
     $(document).ready(function(){
         startClock();
+        getBatteeryInfo();
     });
 })();

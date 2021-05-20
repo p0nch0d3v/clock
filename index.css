@@ -22,3 +22,17 @@ body{
 .clock > .pulse.black {
     color: black;
 }
+
+#battery {
+    width: 100vw;
+    height: 1vh;
+    border-radius: unset;
+}
+
+.progress {
+    background-color: #000;
+}
+.progress > .progress-bar {
+    width:0%;
+    background-color: #72d900;
+}
