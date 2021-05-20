@@ -25,14 +25,21 @@ body{
 
 #battery {
     width: 100vw;
-    height: 1vh;
+    height: 2vh;
     border-radius: unset;
 }
-
 .progress {
     background-color: #000;
 }
 .progress > .progress-bar {
     width:0%;
+}
+.progress > .progress-bar{
+    background-color: #000;
+}
+.progress > .progress-bar.charging {
     background-color: #72d900;
+}
+.progress > .progress-bar.dis_charging {
+    background-color:yellow;
 }

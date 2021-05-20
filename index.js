@@ -28,21 +28,26 @@
 
     getBatteeryInfo = function(){
       navigator.getBattery().then(function(battery) {
-        battery.addEventListener('levelchange', function() {    
-          $('#battery .progress-bar').css('width', `${(battery.level * 100)}%`);
-        })
         $('#battery .progress-bar').css('width', `${(battery.level * 100)}%`);
+        if (battery.charging){
+          $('#battery .progress-bar').addClass('charging');
+        }
+        else {
+          $('#battery .progress-bar').addClass('dis_charging');
+        }
       });
     }
 
     $(document).on('touchend click', function(){
-      console.log();
       toggleFullScreen();
     });
 
 
     $(document).ready(function(){
         startClock();
+        setInterval(function(){
+          getBatteeryInfo();
+        }, (1000 * 60));
         getBatteeryInfo();
     });
 })();
