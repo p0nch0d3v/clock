@@ -26,34 +26,57 @@
      }
     };
 
+    setBatteryLevel = function(value){
+      value *= 100;
+      let element = $('#battery .progress-bar');
+      
+      element.css('width', `${(value)}%`);
+      element.removeClass('more-than-75 between-75-50 between-50-75 less-than-25');
+      if (value >= 75){
+        element.addClass('more-than-75');
+      }
+      else if (value >= 50 && value < 75) {
+        element.addClass('between-75-50');
+      }
+      else if (value >= 25 && value < 50) {
+        element.addClass('between-50-75');
+      }
+      else {
+        element.addClass('less-than-25');
+      }
+    };
+    
+    setCharging = function(charging){
+      let element = $('#battery .progress-bar');
+      if (charging){
+        element.addClass('charging');
+      }
+      else {
+        element.removeClass('charging');
+      }
+    };
+
     getBatteeryInfo = function(){
       navigator.getBattery().then(function(battery) {
-        battery.addEventListener('levelchange', function(){
-          $('#battery .progress-bar').css('width', `${(battery.level * 100)}%`);
-        });
-        battery.addEventListener('chargingchange', function(){
-          if (battery.charging) {
-            $('#battery .progress-bar').removeClass('dis_charging');
-            $('#battery .progress-bar').addClass('charging');
-          }
-          else {
-            $('#battery .progress-bar').removeClass('charging');
-            $('#battery .progress-bar').addClass('dis_charging');
-          }
-        });
+        const onLevelChange = function(){ 
+          setBatteryLevel(battery.level);
+        }
+        battery.removeEventListener('levelchange', onLevelChange);
+        battery.addEventListener('levelchange', onLevelChange);
         
-        $('#battery .progress-bar').css('width', `${(battery.level * 100)}%`);
-        if (battery.charging) {
-          $('#battery .progress-bar').removeClass('dis_charging');
-          $('#battery .progress-bar').addClass('charging');
-        }
-        else {
-          $('#battery .progress-bar').removeClass('charging');
-          $('#battery .progress-bar').addClass('dis_charging');
-        }
+        const onChargingChange = function(){
+          setCharging(battery.charging);
+        };
+
+        battery.removeEventListener('chargingchange', onChargingChange);
+        battery.addEventListener('chargingchange', onChargingChange);
+        
+        setBatteryLevel(battery.level);
+        setCharging(battery.charging);
       });
     }
 
+    $(document).off('touchend click')
     $(document).on('touchend click', function(){
       toggleFullScreen();
     });

@@ -2,18 +2,8 @@ body{
     font-family: 'Quantico', sans-serif;
     background-color: black;
 }
-.btn-primary,
-.btn-primary:active{
-    background-color: #00ff00;
-    border-color: #00ff00;
-}
-.btn-primary:hover,
-.btn-primary:focus{
-    background-color: #72d900;
-    border-color: #72d900;
-}
 .clock-wrapper {
-    height: 90vh;
+    height: 95vh;
 }
 .clock {
     color:#2EFE2E;
@@ -34,12 +24,25 @@ body{
 .progress > .progress-bar {
     width:0%;
 }
-.progress > .progress-bar{
+.progress > .progress-bar {
     background-color: #000;
 }
-.progress > .progress-bar.charging {
-    background-color: #72d900;
+.progress > .progress-bar.charging { 
+    background: repeating-linear-gradient( 
+        45deg, 
+        #ffffff7F, 
+        #0000007F 
+        5vw); 
+} 
+.progress > .progress-bar.more-than-75 {
+    background-color: #2EFE2E;
 }
-.progress > .progress-bar.dis_charging {
+.progress > .progress-bar.between-75-50 {
     background-color:yellow;
+}
+.progress > .progress-bar.between-50-75 {
+    background-color: orange;
+}
+.progress > .progress-bar.less-than-25 {
+    background-color: red;
 }
