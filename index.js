@@ -28,11 +28,27 @@
 
     getBatteeryInfo = function(){
       navigator.getBattery().then(function(battery) {
+        battery.addEventListener('levelchange', function(){
+          $('#battery .progress-bar').css('width', `${(battery.level * 100)}%`);
+        });
+        battery.addEventListener('chargingchange', function(){
+          if (battery.charging) {
+            $('#battery .progress-bar').removeClass('dis_charging');
+            $('#battery .progress-bar').addClass('charging');
+          }
+          else {
+            $('#battery .progress-bar').removeClass('charging');
+            $('#battery .progress-bar').addClass('dis_charging');
+          }
+        });
+        
         $('#battery .progress-bar').css('width', `${(battery.level * 100)}%`);
-        if (battery.charging){
+        if (battery.charging) {
+          $('#battery .progress-bar').removeClass('dis_charging');
           $('#battery .progress-bar').addClass('charging');
         }
         else {
+          $('#battery .progress-bar').removeClass('charging');
           $('#battery .progress-bar').addClass('dis_charging');
         }
       });
