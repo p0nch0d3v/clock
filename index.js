@@ -16,7 +16,7 @@
         }, 1000);
     };
 
-    toggleFullScreen = function toggleFullScreen() {
+    let toggleFullScreen = function toggleFullScreen() {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
       } else {
@@ -26,11 +26,12 @@
      }
     };
 
-    setBatteryLevel = function(value){
+    let setBatteryLevel = function(value){
       value *= 100;
       let element = $('#battery .progress-bar');
       
-      element.css('width', `${(value)}%`);
+      element.css('height', `${(value)}vh`);
+      element.css('margin-top', `${100 - value}vh`)
       element.removeClass('more-than-75 between-75-50 between-50-75 less-than-25');
       if (value >= 75){
         element.addClass('more-than-75');
@@ -46,9 +47,9 @@
       }
     };
     
-    setCharging = function(charging){
+    let setCharging = function(charging, full){
       let element = $('#battery .progress-bar');
-      if (charging){
+      if (charging && !full){
         element.addClass('charging');
       }
       else {
@@ -56,7 +57,7 @@
       }
     };
 
-    getBatteeryInfo = function(){
+    let getBatteeryInfo = function(){
       navigator.getBattery().then(function(battery) {
         const onLevelChange = function(){ 
           setBatteryLevel(battery.level);
@@ -65,14 +66,14 @@
         battery.addEventListener('levelchange', onLevelChange);
         
         const onChargingChange = function(){
-          setCharging(battery.charging);
+          setCharging(battery.charging, batery.level === 1);
         };
 
         battery.removeEventListener('chargingchange', onChargingChange);
         battery.addEventListener('chargingchange', onChargingChange);
         
         setBatteryLevel(battery.level);
-        setCharging(battery.charging);
+        setCharging(battery.charging, battery.level === 1);
       });
     }
 
@@ -81,12 +82,11 @@
       toggleFullScreen();
     });
 
-
-    $(document).ready(function(){
-        startClock();
-        setInterval(function(){
-          getBatteeryInfo();
-        }, (1000 * 60));
+    $('document').ready(function(){
+      startClock();
+      setInterval(function(){
         getBatteeryInfo();
+      }, (1000 * 60));
+      getBatteeryInfo();
     });
 })();
