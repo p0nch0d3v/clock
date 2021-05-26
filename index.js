@@ -1,11 +1,35 @@
 (function(){
-    let startClock = function(){
+    let startClock = function() {
+        let getHours = function() {
+          return moment().format("HH");
+        };
+        let getMinutes = function() {
+          return moment().format("mm");
+        };
+        
         let interval = 1;
-        $('.clock .hour').text(moment().format("HH"));
-        $('.clock .minute').text(moment().format("mm"));
+        let hour = getHours();
+        if (hour.length > 1) {
+          $('.clock .hour-2').text(hour[1]);
+        }
+        $('.clock .hour-1').text(hour[0]);
+        let minute = getMinutes();
+        if (minute.length > 1) {
+          $('.clock .minute-2').text(minute[1]);
+        }
+        $('.clock .minute-1').text(minute[0]);
         setInterval(() => {
-            $('.clock .hour').text(moment().format("HH"));
-            $('.clock .minute').text(moment().format("mm"));
+            hour = getHours();
+            if (hour.length > 1) {
+              $('.clock .hour-2').text(hour[1]);
+            }
+            $('.clock .hour-1').text(hour[0]);
+            minute = getMinutes();
+            if (minute.length > 1) {
+              $('.clock .minute-2').text(minute[1]);
+            }
+            $('.clock .minute-1').text(minute[0]);
+
             if (interval === 1){
                 $('.clock .pulse').removeClass('black');
             }
