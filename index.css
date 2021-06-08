@@ -23,13 +23,25 @@ body{
 }
 .clock {
     color:#2EFE2E;
-    font-size: 48vw;
     font-weight: bold;
     display: flex;
 }
 .digit {
     width: 22vw;
     text-align: right;
+    font-size: 80vh;
+    border: 1px solid transparent;
+    display: inline-block;
+    height: 65vh;
+    transform: scale(1, 1.25);
+}
+
+.clock > .pulse {
+    font-size: 80vh;
+    display: inline-block;
+    height: 65vh;
+    transform: scale(1, 1.25);
+    border: 1px solid transparent;
 }
 .clock > .pulse.black {
     color: black;
