@@ -4,15 +4,14 @@
 	<meta charset="UTF-8" />
 	<meta name="robots" content="noindex, nofollow" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1" />
+    <meta name="theme-color" content="black"/>
 	
     <title>Clock</title>
-    <link rel="stylesheet" href="index.css" />
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
     <div class="main-wrapper">
-        <div id="battery" class="progress">
-            <div class="progress-bar"></div>
-        </div>
         <span class="clock-wrapper">
             <span class="clock d-flex">
                 <span class="digit hour-1"></span>
@@ -24,8 +23,7 @@
         </span>
     </div>
     
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-    <script src="https://momentjs.com/downloads/moment.min.js"></script>
-    <script src="index.js"></script>
+    <script src="js/lib/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <script src="js/lib/moment.min.js"></script>
+    <script src="js/index.js"></script>
 </body>

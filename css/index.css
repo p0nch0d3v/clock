@@ -1,8 +1,17 @@
 @font-face {
     font-family: digital-7;
-    src: url(digital-7.ttf);
+    src: url(/font/digital-7.ttf);
 }
-body{
+
+:root {
+    --default--color: #00FF00;
+    --one-hundred-color: #00FFFF;
+    --seventy-five-color:#FFFF00;
+    --fifty-color:#FFA500;
+    --twenty-five-color:#FF0000;
+}
+
+body {
     background-color:#000;
     font-family: 'digital-7';
     margin: 0;
@@ -14,7 +23,7 @@ body{
 }
 .clock-wrapper {
      height: 100vh;
-     width: 98vw;
+     width: 100vw;
      align-content: center;
      align-items: center;
      display: flex;
@@ -22,7 +31,7 @@ body{
      justify-content: center;
 }
 .clock {
-    color:#2EFE2E;
+    color: var(--default--color);
     font-weight: bold;
     display: flex;
 }
@@ -44,39 +53,26 @@ body{
     border: 1px solid transparent;
 }
 .clock > .pulse.black {
-    color: black;
+    color: black !important;
 }
 
-#battery {
-    width: 2vw;
-    height: 100vh;
-    border-radius: unset;
+.clock-wrapper > .clock.exact-100 {
+    color: var(--one-hundred-color);
 }
-.progress {
-    background-color: #000;
+
+.clock-wrapper > .clock.more-than-75 {
+    color: var(--default--color);
 }
-.progress > .progress-bar {
-    height: 0vh;
+.clock-wrapper > .clock.between-75-50 {
+    color:var(--seventy-five-color);
 }
-.progress > .progress-bar {
-    background-color: #000;
+.clock-wrapper > .clock.between-50-75 {
+    color: var(--fifty-color);
 }
-.progress > .progress-bar.charging { 
-    background: repeating-linear-gradient( 
-        45deg, 
-        #ffffff7F, 
-        #0000007F 
-        5vw); 
-} 
-.progress > .progress-bar.more-than-75 {
-    background-color: #2EFE2E;
+.clock-wrapper > .clock.less-than-25 {
+    color: var(--twenty-five-color);
 }
-.progress > .progress-bar.between-75-50 {
-    background-color:yellow;
-}
-.progress > .progress-bar.between-50-75 {
-    background-color: orange;
-}
-.progress > .progress-bar.less-than-25 {
-    background-color: red;
+
+.clock-wrapper > .clock.charging > .pulse {
+    color: var(--one-hundred-color);
 }

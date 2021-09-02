@@ -1,7 +1,9 @@
+'use strict';
+
 (function(){
     let startClock = function() {
         let getHours = function() {
-          return moment().format("HH");
+          return moment().format("hh");
         };
         let getMinutes = function() {
           return moment().format("mm");
@@ -52,12 +54,13 @@
 
     let setBatteryLevel = function(value){
       value *= 100;
-      let element = $('#battery .progress-bar');
+      let element = $('.clock');
       
-      element.css('height', `${(value)}vh`);
-      element.css('margin-top', `${100 - value}vh`)
-      element.removeClass('more-than-75 between-75-50 between-50-75 less-than-25');
-      if (value >= 75){
+      element.removeClass('exact-100 more-than-75 between-75-50 between-50-75 less-than-25');
+      if (value === 100) {
+        element.addClass('exact-100');
+      }
+      else if (value >= 75 && value <= 99) {
         element.addClass('more-than-75');
       }
       else if (value >= 50 && value < 75) {
@@ -72,7 +75,7 @@
     };
     
     let setCharging = function(charging, full){
-      let element = $('#battery .progress-bar');
+      let element = $('.clock');
       if (charging && !full){
         element.addClass('charging');
       }
@@ -82,24 +85,32 @@
     };
 
     let getBatteeryInfo = function(){
-      navigator.getBattery().then(function(battery) {
-        const onLevelChange = function(){ 
-          setBatteryLevel(battery.level);
-        }
-        battery.removeEventListener('levelchange', onLevelChange);
-        battery.addEventListener('levelchange', onLevelChange);
-        
-        const onChargingChange = function(){
-          setCharging(battery.charging, batery.level === 1);
-        };
+      if (typeof navigator.getBatteeryInfo === 'function') {
+        navigator.getBattery().then(function(battery) {
+          const onLevelChange = function(){ 
+            setBatteryLevel(battery.level);
+          }
+          battery.removeEventListener('levelchange', onLevelChange);
+          battery.addEventListener('levelchange', onLevelChange);
+          
+          const onChargingChange = function(){
+            setCharging(battery.charging, batery.level === 1);
+          };
 
-        battery.removeEventListener('chargingchange', onChargingChange);
-        battery.addEventListener('chargingchange', onChargingChange);
-        
-        setBatteryLevel(battery.level);
-        setCharging(battery.charging, battery.level === 1);
-      });
-    }
+          battery.removeEventListener('chargingchange', onChargingChange);
+          battery.addEventListener('chargingchange', onChargingChange);
+          
+          setBatteryLevel(battery.level);
+          setCharging(battery.charging, battery.level === 1);
+        });
+      }
+    };
+
+    let serviceWorkerInit = function(){
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./service-worker.js');
+      }
+    };
 
     $(document).off('touchend click')
     $(document).on('touchend click', function(){
@@ -112,5 +123,6 @@
         getBatteeryInfo();
       }, (1000 * 60));
       getBatteeryInfo();
+      serviceWorkerInit();
     });
 })();
