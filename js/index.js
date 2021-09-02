@@ -85,7 +85,7 @@
     };
 
     let getBatteeryInfo = function(){
-      if (typeof navigator.getBatteeryInfo === 'function') {
+      if (typeof navigator.getBattery === 'function') {
         navigator.getBattery().then(function(battery) {
           const onLevelChange = function(){ 
             setBatteryLevel(battery.level);
