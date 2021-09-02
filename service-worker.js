@@ -2,7 +2,10 @@ var cacheName = 'clock';
 var filesToCache = [
   '/',
   '/index.html',
+  '/font/digital-7.ttf',
   '/css/index.css',
+  '/js/lib/jquery-3.6.0.min.js',
+  '/js/lib/moment.min.js',
   '/js/index.js'
 ];
 
