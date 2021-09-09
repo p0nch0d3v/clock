@@ -1,6 +1,6 @@
 {
-    "name": "Simple Clock",
-    "short_name": "Clock",
+    "name": "Sneaky Koder Clock",
+    "short_name": "SK-Clock",
     "lang": "en-US",
     "start_url": "/index.html",
     "display": "standalone",
