@@ -1,6 +1,12 @@
 'use strict';
 
 (function(){
+  let setHourDigits = function(hour) {
+    if (hour.length > 1) {
+      $('.clock .hour-2').text(hour[1]);
+    }
+    $('.clock .hour-1').text(hour[0]);
+  };
     let startClock = function() {
         let getHours = function() {
           return moment().format("hh");
@@ -11,10 +17,8 @@
         
         let interval = 1;
         let hour = getHours();
-        if (hour.length > 1) {
-          $('.clock .hour-2').text(hour[1]);
-        }
-        $('.clock .hour-1').text(hour[0]);
+        setHourDigits(hour);
+        
         let minute = getMinutes();
         if (minute.length > 1) {
           $('.clock .minute-2').text(minute[1]);
@@ -22,10 +26,8 @@
         $('.clock .minute-1').text(minute[0]);
         setInterval(() => {
             hour = getHours();
-            if (hour.length > 1) {
-              $('.clock .hour-2').text(hour[1]);
-            }
-            $('.clock .hour-1').text(hour[0]);
+            setHourDigits(hour);
+            
             minute = getMinutes();
             if (minute.length > 1) {
               $('.clock .minute-2').text(minute[1]);
