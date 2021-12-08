@@ -2,13 +2,13 @@
     "name": "Sneaky Koder Clock",
     "short_name": "SK-Clock",
     "lang": "en-US",
-    "start_url": "/index.html",
+    "start_url": "./index.html",
     "display": "standalone",
     "background_color": "black",
     "theme_color": "black",
     "icons": [
         {
-            "src": "images/icon-144.png",
+            "src": "./images/icon-144.png",
             "sizes": "144x144",  
             "type": "image/png"
         }
