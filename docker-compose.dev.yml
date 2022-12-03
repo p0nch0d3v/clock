@@ -1,8 +1,13 @@
 version: '3'
+
 services:
-    app:
-        image: nginx:alpine
-        volumes:
-            - ./:/usr/share/nginx/html
-        ports:
-            - 5000:80
+  app:
+    image: node:lts-alpine
+    command: >
+      sh -c "cd /app &&
+             npm install &&
+             npm run dev"
+    volumes:
+      - .:/app
+    ports:
+      - 2999:3000
