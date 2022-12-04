@@ -1,7 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
 import "./app.css";
 import { Fragment } from "preact";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 
 export function App() {
   const [hour1, set_hour1] = useState("-");
