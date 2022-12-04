@@ -9,7 +9,7 @@ export function App() {
   const [minute1, set_minute1] = useState("-");
   const [minute2, set_minute2] = useState("-");
   const [seconds, set_seconds] = useState(0);
-  const [tick, set_tick] = useState(1);
+  const [tick, set_tick] = useState(0);
 
   const getHours = function () {
     return dayjs().format("hh");
@@ -58,7 +58,7 @@ export function App() {
   return (
     <Fragment>
       <div class="clock" onTouchEnd={toggleFullScreen}>
-       <span class="digit hour-1">{hour1 !== '0' ? hour1 : <>&nbsp;</>}</span>
+        <span class="digit hour-1">{hour1 !== "0" ? hour1 : <>&nbsp;</>}</span>
         <span class="digit hour-2">{hour2}</span>
         <span className={"pulse" + (tick === 1 ? "" : " black")}>:</span>
         <span class="digit minute-1">{minute1}</span>

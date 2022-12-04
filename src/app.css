@@ -1,100 +1,97 @@
 @font-face {
-    font-family: digital-7;
-    src: url(digital-7.ttf);
+  font-family: digital-7;
+  src: url(./Orbitron-VariableFont_wght.ttf);
 }
 
 :root {
-    --default--color: #00FF00;
-    --one-hundred-color: #00FFFF;
-    --seventy-five-color: #FFFF00;
-    --fifty-color: #FFA500;
-    --twenty-five-color: #FF0000;
-    --font-size: 90vh;
-    --transform: scale(1, 1.5);
-    --height: 99vh;
-    --margin-top: 50vh;
+  --default--color: #00ff00;
+  --one-hundred-color: #00ffff;
+  --seventy-five-color: #ffff00;
+  --fifty-color: #ffa500;
+  --twenty-five-color: #ff0000;
 }
 
 body {
-    background-color: white;
-    color: black;
-    overflow: hidden;
+  background-color: white;
+  color: black;
+  overflow: hidden;
 }
 
 body::after {
-    content: "Aspect Ratio Unsupported";
+  content: "Aspect Ratio Unsupported";
 }
 
 @media (min-aspect-ratio: 4/3) {
-    body,#app {
-        background-color: #000;
-        font-family: 'digital-7';
-        margin: 0;
-        padding: 0;
-    }
+  body,
+  #app {
+    background-color: #000;
+    font-family: "digital-7";
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
 
-    body::before,#app::before {
-        content: unset;
-    }
+  body::before,
+  #app::before {
+    content: unset;
+  }
 
-    .clock {
-        color: var(--default--color);
-        font-weight: bold;
-        display:flex;
-        height: 100vh;
-        width: 100vw;
-        flex-direction: row;
-        align-content: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        padding-top: var(--margin-top);
-    }
+  .clock {
+    border: 1px solid transparent;
+    color: var(--default--color);
+    font-weight: bold;
+    display: inline-flex;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: right;
+    justify-items: center;
+    flex-wrap: nowrap;
+    font-weight: 900;
+  }
 
-    .clock>.digit {
-        width: 22vw;
-        text-align: right;
-        font-size: var(--font-size);
-        border: 1px solid transparent;
-        display: inline-block;
-        height: var(--height);
-        transform: var(--transform);
-        flex-wrap: wrap;
-    }
+  .clock > .digit,
+  .clock > .pulse {
+    width: calc(20vw - 2px);
+    text-align: right;
+    font-size: 40vh;
+    border: 1px solid transparent;
+    display: inline-block;
+    height: auto;
+    line-height: 39vh;
+    transform: scale(1, 2.5);
+  }
+  .clock > .pulse {
+    text-align: center;
+  }
 
-    .clock>.pulse {
-        font-size: var(--font-size);
-        display: inline-block;
-        transform: var(--transform);
-        border: 1px solid transparent;
-        height: var(--height);
-        text-align: right;
-    }
+  .clock > .pulse.black {
+    color: black !important;
+  }
 
-    .clock>.pulse.black {
-        color: black !important;
-    }
+  .clock-wrapper > .clock.exact-100 {
+    color: var(--one-hundred-color);
+  }
 
-    .clock-wrapper>.clock.exact-100 {
-        color: var(--one-hundred-color);
-    }
+  .clock-wrapper > .clock.more-than-75 {
+    color: var(--default--color);
+  }
 
-    .clock-wrapper>.clock.more-than-75 {
-        color: var(--default--color);
-    }
+  .clock-wrapper > .clock.between-75-50 {
+    color: var(--seventy-five-color);
+  }
 
-    .clock-wrapper>.clock.between-75-50 {
-        color: var(--seventy-five-color);
-    }
+  .clock-wrapper > .clock.between-50-75 {
+    color: var(--fifty-color);
+  }
 
-    .clock-wrapper>.clock.between-50-75 {
-        color: var(--fifty-color);
-    }
+  .clock-wrapper > .clock.less-than-25 {
+    color: var(--twenty-five-color);
+  }
 
-    .clock-wrapper>.clock.less-than-25 {
-        color: var(--twenty-five-color);
-    }
-
-    .clock-wrapper>.clock.charging>.pulse {
-        color: var(--one-hundred-color);
-    }
+  .clock-wrapper > .clock.charging > .pulse {
+    color: var(--one-hundred-color);
+  }
 }
