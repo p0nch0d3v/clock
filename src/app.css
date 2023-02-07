@@ -12,80 +12,94 @@ body {
   overflow: hidden;
 }
 
-body::after {
-  content: "Aspect Ratio Unsupported";
+body,
+#app {
+  background-color: #000;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
-@media (min-aspect-ratio: 4/3) {
-  body,
-  #app {
-    background-color: #000;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-
-  body::before,
-  #app::before {
-    content: unset;
-  }
-
-  .clock {
-    border: 1px solid transparent;
-    color: var(--default--color);
-    font-weight: bold;
-    display: inline-flex;
-    height: 100vh;
-    width: 100vw;
-    flex-direction: row;
-    align-content: center;
-    align-items: center;
-    justify-content: right;
-    justify-items: center;
-    flex-wrap: nowrap;
-    font-weight: 900;
-  }
-
-  .clock > .digit,
-  .clock > .pulse {
-    width: calc(20vw - 2px);
-    text-align: right;
-    font-size: 40vh;
-    border: 1px solid transparent;
-    display: inline-block;
-    height: auto;
-    line-height: 39vh;
-    transform: scale(1, 2.5);
-  }
-  .clock > .pulse {
-    text-align: center;
-  }
-
-  .clock > .pulse.black {
-    color: black !important;
-  }
-
-  .clock-wrapper > .clock.exact-100 {
-    color: var(--one-hundred-color);
-  }
-
-  .clock-wrapper > .clock.more-than-75 {
-    color: var(--default--color);
-  }
-
-  .clock-wrapper > .clock.between-75-50 {
-    color: var(--seventy-five-color);
-  }
-
-  .clock-wrapper > .clock.between-50-75 {
-    color: var(--fifty-color);
-  }
-
-  .clock-wrapper > .clock.less-than-25 {
-    color: var(--twenty-five-color);
-  }
-
-  .clock-wrapper > .clock.charging > .pulse {
-    color: var(--one-hundred-color);
-  }
+.clock {
+  border: 1px solid transparent;
+  color: var(--default--color);
+  font-weight: bold;
+  display: inline-flex;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: right;
+  justify-items: center;
+  flex-wrap: nowrap;
+  font-weight: 900;
 }
+
+.clock>.digit,
+.clock>.pulse {
+  width: calc(20vw - 2px);
+  text-align: right;
+  font-size: 40vh;
+  border: 1px solid transparent;
+  display: inline-block;
+  height: auto;
+  line-height: 39vh;
+  transform: scale(1, 2.5);
+}
+
+.clock>.pulse {
+  text-align: center;
+}
+
+.clock>.pulse.black {
+  color: black !important;
+}
+
+.clock.portrait {
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.clock.portrait>.digit,
+.clock.portrait>.pulse {
+  width: 48vw;
+  text-align: right;
+  font-size: 48vw;
+  display: inline-block;
+  height: 48vh;
+  line-height: 48vw;
+  transform: scale(1);
+  text-align: center;
+}
+
+.clock.portrait>.pulse {
+  height: 2vh;
+  line-height: 2vh;
+  font-size: 2vh;
+  width: 48vw;
+}
+
+/* .clock-wrapper>.clock.exact-100 {
+  color: var(--one-hundred-color);
+}
+
+.clock-wrapper>.clock.more-than-75 {
+  color: var(--default--color);
+}
+
+.clock-wrapper>.clock.between-75-50 {
+  color: var(--seventy-five-color);
+}
+
+.clock-wrapper>.clock.between-50-75 {
+  color: var(--fifty-color);
+}
+
+.clock-wrapper>.clock.less-than-25 {
+  color: var(--twenty-five-color);
+}
+
+.clock-wrapper>.clock.charging>.pulse {
+  color: var(--one-hundred-color);
+} */
