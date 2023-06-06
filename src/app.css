@@ -50,10 +50,21 @@ body,
 
 .clock>.pulse {
   text-align: center;
+  display: flex !important;
+  flex-direction: column;
 }
 
 .clock>.pulse.black {
   color: black !important;
+  display: flex !important;
+  flex-direction: column;
+}
+
+.clock>.pulse>.light {
+  font-size: 5vh;
+  line-height: 5vh;
+  position: relative;
+  top: -20vh;
 }
 
 .clock.portrait {
@@ -78,8 +89,21 @@ body,
   line-height: 2vh;
   font-size: 2vh;
   width: 48vw;
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+  align-content: space-between;
+  justify-content: space-between;
 }
 
+.clock.portrait>.pulse>.light {
+  font-size: 5vh;
+  line-height: 5vh;
+  position: relative;
+  top: 0;
+  left: 0;
+}
 /* .clock-wrapper>.clock.exact-100 {
   color: var(--one-hundred-color);
 }
