@@ -1,7 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
 import "./app.css";
-import { Fragment } from "preact";
 import dayjs from "dayjs";
+import { useBattery } from "react-use";
 
 export function App() {
   const [hour1, set_hour1] = useState("-");
@@ -11,6 +11,9 @@ export function App() {
   const [seconds, set_seconds] = useState(0);
   const [tick, set_tick] = useState(0);
   const [orientation, set_orientation] = useState(null);
+
+  const battery = useBattery();
+  const { isSupported, charging } = battery;
 
   const getHours = function () {
     return dayjs().format("hh");
@@ -97,13 +100,20 @@ export function App() {
         isPortrait() ?
           <>
             <span style={{ flexBasis: '100%', height: 0 }}></span>
-            <span className={`pulse ${(tick === 1 ? "" : " black")}`}>-</span>
-            <span className={`pulse ${(tick === 1 ? "" : " black")}`}>-</span>
+            <span className={`pulse ${(tick === 1 ? "" : " black")}`}>
+              <span>-</span>
+              { isSupported && charging && <span className="light">⚡</span> }
+              <span>-</span>
+            </span>
+            
             <span style={{ flexBasis: '100%', height: 0 }}></span>
           </>
           :
           <>
-            <span className={`pulse ${(tick === 1 ? "" : " black")}`}>:</span>
+            <span className={`pulse ${(tick === 1 ? "" : " black")}`}>
+              <span>:</span>
+              { isSupported && charging && <span className="light">⚡</span> }
+            </span>
           </>
       }
       <span class="digit minute-1">{minute1}</span>
