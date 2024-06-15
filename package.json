@@ -11,7 +11,7 @@
   "dependencies": {
     "dayjs": "1.11.8",
     "preact": "10.15.1",
-    "react-use": "17.4.0"
+    "react-use": "17.5.0"
   },
   "devDependencies": {
     "@preact/preset-vite": "2.5.0",
