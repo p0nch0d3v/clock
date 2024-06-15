@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "dayjs": "1.11.8",
-    "preact": "10.15.1",
+    "preact": "10.22.0",
     "react-use": "17.4.0"
   },
   "devDependencies": {
