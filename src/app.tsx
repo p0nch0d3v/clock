@@ -1,19 +1,18 @@
-import { useEffect, useState } from "preact/hooks";
-import "./app.css";
-import dayjs from "dayjs";
-import { useBattery } from "react-use";
+import { useEffect, useState } from 'preact/hooks'
+import dayjs from 'dayjs'
+import './app.css'
+// import { useBattery } from "react-use";
 
 export function App() {
-  const [hour1, set_hour1] = useState("-");
-  const [hour2, set_hour2] = useState("-");
-  const [minute1, set_minute1] = useState("-");
-  const [minute2, set_minute2] = useState("-");
+   const [hour1, set_hour1] = useState<string>("-");
+  const [hour2, set_hour2] = useState<string>("-");
+  const [minute1, set_minute1] = useState<string>("-");
+  const [minute2, set_minute2] = useState<string>("-");
   const [seconds, set_seconds] = useState(0);
   const [tick, set_tick] = useState(0);
-  const [orientation, set_orientation] = useState(null);
+  const [orientation, set_orientation] = useState<number|null>(null);
 
-  const battery = useBattery();
-  const { isSupported, charging } = battery;
+  // const {isSupported} = useBattery();
 
   const getHours = function () {
     return dayjs().format("hh");
@@ -23,14 +22,14 @@ export function App() {
     return dayjs().format("mm");
   };
 
-  const setHourDigits = function (hour) {
+  const setHourDigits = function (hour: string) {
     if (hour.length > 1) {
       set_hour2(hour[1]);
     }
     set_hour1(hour[0]);
   };
 
-  const setMinutesDigits = function (minute) {
+  const setMinutesDigits = function (minute: string) {
     if (minute.length > 1) {
       set_minute2(minute[1]);
     }
@@ -62,13 +61,13 @@ export function App() {
       set_seconds(dayjs().second());
     }, 1000 * 1);
 
-    const onOrientationChange = (e) => {
+    const onOrientationChange = (e: any) => {
       set_orientation(e?.target?.angle || null);
     }
     window?.screen?.orientation?.removeEventListener('change', onOrientationChange);
     window?.screen?.orientation?.addEventListener('change', onOrientationChange);
 
-    const onResize = (e) => {
+    const onResize = () => {
       if (orientation === null) {
         setTimeout(() => {
           set_orientation(getAspectRatio() > 1 ? 90 : 0);
@@ -92,7 +91,7 @@ export function App() {
     set_tick(seconds % 2);
   }, [seconds]);
 
-  return (
+ return (
     <div className={`clock ${isPortrait() ? 'portrait' : ''}`} onTouchEnd={toggleFullScreen}>
       <span class="digit hour-1">{hour1 !== "0" ? hour1 : <>&nbsp;</>}</span>
       <span class="digit hour-2">{hour2}</span>
@@ -102,7 +101,7 @@ export function App() {
             <span style={{ flexBasis: '100%', height: 0 }}></span>
             <span className={`pulse ${(tick === 1 ? "" : " black")}`}>
               <span>-</span>
-              { isSupported && charging && <span className="light">⚡</span> }
+              {/* { isSupported && charging && <span className="light">⚡</span> } */}
               <span>-</span>
             </span>
             
@@ -112,7 +111,7 @@ export function App() {
           <>
             <span className={`pulse ${(tick === 1 ? "" : " black")}`}>
               <span>:</span>
-              { isSupported && charging && <span className="light">⚡</span> }
+              {/* { isSupported && charging && <span className="light">⚡</span> } */}
             </span>
           </>
       }
